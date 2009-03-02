@@ -71,13 +71,21 @@ rm -fr %buildroot
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%files
+%{_sysconfdir}/dbus-1/system.d/exalt.conf
+%{_sbindir}/exalt-client
+%{_sbindir}/exalt-command
+%{_sbindir}/exalt-daemon
+%{_datadir}/%name/icons/*.png
+
 %files -n %{libname}
 %defattr(-,root,root)
 %doc AUTHORS COPYING README
-%{_libdir}/*.so.0*
+%{_libdir}/*
 
 %files -n %libnamedev
 %defattr(-,root,root)
 %{_libdir}/*a
-%{_includedir}/*.h
+%{_includedir}/exalt/*.h
+%{_includedir}/exalt_dbus/*.h
 %{_libdir}/pkgconfig/*
