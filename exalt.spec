@@ -1,6 +1,6 @@
 %define	name	exalt
 %define version 0.6
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define major 0
 %define libname %mklibname %{name} %major
@@ -15,7 +15,6 @@ Group: 		Graphical desktop/Enlightenment
 URL: 		http://www.enlightenment.org/
 Source: 	%{name}-%{version}.tar.bz2
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
-Conflicts:	%{mklibname evas1}-devel
 
 BuildRequires: 	eet-devel >= 1.1.0
 buildrequires:  ecore-devel >= 0.9.9.050, eet-devel >= 1.1.0
@@ -31,7 +30,6 @@ This package is part of the Enlightenment DR17 desktop shell.
 %package -n %{libname}
 Summary: Exalt Libraries
 Group: System/Libraries
-Conflicts:	%{mklibname evas1}
 
 %description -n %{libname}
 efl based front end network manager
@@ -41,10 +39,8 @@ This package is part of the Enlightenment DR17 desktop shell.
 %package -n %libnamedev
 Summary: Exalt Library headers and development libraries
 Group: System/Libraries
-Requires: %{libname} = 2:%{version}
-Provides: %{name}-devel = 2:%{version}-%{release}
-Conflicts:	%{mklibname evas1}-devel
-Obsoletes: %mklibname -d evas 0
+Requires: %{libname} = %{version}
+Provides: %{name}-devel = %{version}-%{release}
 
 %description -n %libnamedev
 Exxalt development headers and development libraries.
