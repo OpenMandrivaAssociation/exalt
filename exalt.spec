@@ -1,6 +1,6 @@
 %define	name	exalt
 %define version 0.6
-%define release %mkrel 2
+%define release %mkrel 3
 
 %define major 0
 %define libname %mklibname %{name} %major
@@ -22,6 +22,7 @@ buildrequires:	e_dbus-devel >= 0.1.0.002,
 buildrequires:  dbus-devel >= 0.1,
 buildrequires:  evas-devel >= 0.9.9.050
 buildrequires:  elementary-devel >= 0.1.0.0
+buildrequires:	wpa_supplicant dhcp-client
 
 %description
 efl based front end network manager
@@ -50,7 +51,7 @@ Exxalt development headers and development libraries.
 
 %build
 NOCONFIGURE=1 ./autogen.sh
-%configure2_5x
+export PATH=$PATH:/usr/sbin/:/sbin && %configure2_5x
 %make
 
 %install
