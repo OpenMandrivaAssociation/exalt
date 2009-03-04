@@ -51,8 +51,8 @@ Exxalt development headers and development libraries.
 
 %build
 ./autogen.sh
+export LIBS='-L/%{_libdir}/libm.a -lm'
 export PATH=$PATH:/usr/sbin/:/sbin && %configure2_5x
-make distclean
 %make
 
 %install
