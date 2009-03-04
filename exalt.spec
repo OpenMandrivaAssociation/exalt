@@ -1,6 +1,6 @@
 %define	name	exalt
 %define version 0.6
-%define release %mkrel 3
+%define release %mkrel 4
 
 %define major 0
 %define libname %mklibname %{name} %major
@@ -50,8 +50,9 @@ Exxalt development headers and development libraries.
 %setup -q
 
 %build
-NOCONFIGURE=1 ./autogen.sh
+./autogen.sh
 export PATH=$PATH:/usr/sbin/:/sbin && %configure2_5x
+make distclean
 %make
 
 %install
