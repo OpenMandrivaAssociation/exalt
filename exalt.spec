@@ -17,10 +17,11 @@ Source: 	%{name}-%{version}.tar.bz2
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 
 BuildRequires: 	eet-devel >= 1.1.0
-buildrequires:  ecore-devel >= 0.9.9.050, eet-devel >= 1.1.0
-buildrequires:	e_dbus-devel >= 0.1.0.002,
-buildrequires:  dbus-devel >= 0.1,
+buildrequires:  ecore-devel >= 0.9.9.050
+buildrequires:	e_dbus-devel >= 0.1.0.002
+buildrequires:  dbus-devel >= 0.1
 buildrequires:  evas-devel >= 0.9.9.050
+buildrequires:	edje >= 0.9.92.050
 buildrequires:  elementary-devel >= 0.1.0.0
 buildrequires:	wpa_supplicant dhcp-client
 
