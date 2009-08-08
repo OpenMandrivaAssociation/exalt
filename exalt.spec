@@ -1,8 +1,8 @@
 %define	name	exalt
-%define version 0.6
-%define release %mkrel 5
+%define version 0.8
+%define release %mkrel 0.20080808.1
 
-%define major 0
+%define major 1
 %define libname %mklibname %{name} %major
 %define libnamedev %mklibname %{name} -d
 
@@ -47,17 +47,20 @@ Provides: %{name}-devel = %{version}-%{release}
 Exxalt development headers and development libraries.
 
 %prep
-%setup -q
+%setup -q -n %name
 
 %build
-./autogen.sh
-export LIBS='-L/%{_libdir}/libm.a -lm'
-export PATH=$PATH:/usr/sbin/:/sbin && %configure2_5x
+NOCONFIGURE=yes ./autogen.sh
+%configure2_5x --disable-static \
+	--with-wpa-supplicant=%{_sbindir} \
+	--with-dhcp=/sbin
 %make
 
 %install
 rm -fr %buildroot
 %makeinstall_std
+
+rm -f %buildroot%_libdir/*.la
 
 %if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
@@ -71,19 +74,19 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %{_sysconfdir}/dbus-1/system.d/exalt.conf
-%{_sbindir}/exalt-client
+%{_bindir}/exalt-client
 %{_sbindir}/exalt-command
 %{_sbindir}/exalt-daemon
-%{_datadir}/%name/icons/*.png
+%{_datadir}/%name
 
 %files -n %{libname}
 %defattr(-,root,root)
 %doc AUTHORS COPYING README
-%{_libdir}/*
+%{_libdir}/*.so.%{major}
+%{_libdir}/*.so.%{major}.*
 
 %files -n %libnamedev
 %defattr(-,root,root)
-%{_libdir}/*a
-%{_includedir}/exalt/*.h
-%{_includedir}/exalt_dbus/*.h
+%{_libdir}/*.so
+%{_includedir}/*
 %{_libdir}/pkgconfig/*
