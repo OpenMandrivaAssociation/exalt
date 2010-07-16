@@ -1,6 +1,6 @@
 %define	name	exalt
-%define version 0.8
-%define release %mkrel 0.20080808.1
+%define version 0.9
+%define release %mkrel 0.20100707.1
 
 %define major 1
 %define libname %mklibname %{name} %major
@@ -48,7 +48,7 @@ Provides: %{name}-devel = %{version}-%{release}
 Exxalt development headers and development libraries.
 
 %prep
-%setup -q -n %name
+%setup -q -n %name-%version
 
 %build
 NOCONFIGURE=yes ./autogen.sh
@@ -74,11 +74,9 @@ rm -f %buildroot%_libdir/*.la
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%{_sysconfdir}/dbus-1/system.d/exalt.conf
-%{_bindir}/exalt-client
+%defattr(-,root,root)
 %{_sbindir}/exalt-command
 %{_sbindir}/exalt-daemon
-%{_datadir}/%name
 
 %files -n %{libname}
 %defattr(-,root,root)
