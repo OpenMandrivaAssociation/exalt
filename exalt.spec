@@ -1,6 +1,6 @@
 %define	name	exalt
 %define version 0.9
-%define release %mkrel 0.20100707.1
+%define release %mkrel 0.20101107.1
 
 %define major 1
 %define libname %mklibname %{name} %major
