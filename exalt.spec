@@ -9,16 +9,16 @@
 #cd ..; \
 #tar -Jcf exalt-$PKG_VERSION.tar.xz exalt/ --exclude .svn --exclude .*ignore
 
-%define svnrev	64527
+%define svnrev 76819
 
 %define major 1
-%define libname %mklibname %{name} %major
+%define libname %mklibname %{name} %{major}
 %define develname %mklibname %{name} -d
 
 Summary: 	ELF based front end network manager
 Name:		exalt
 Version:	0.9
-Release:	1.%{svnrev}.1
+Release:	1.%{svnrev}.2
 License: 	BSD
 Group: 		Graphical desktop/Enlightenment
 URL: 		http://www.enlightenment.org/
@@ -35,12 +35,13 @@ BuildRequires:	pkgconfig(elementary)
 BuildRequires:	pkgconfig(evas)
 
 %description
-EFL based front end network manager
+EFL based front end network manager.
+
 This package is part of the Enlightenment DR17 desktop shell.
 
 %package -n %{libname}
-Summary: Exalt Libraries
-Group: System/Libraries
+Summary:	Exalt Libraries
+Group:		System/Libraries
 
 %description -n %{libname}
 ELF based front end network manager
@@ -48,10 +49,10 @@ ELF based front end network manager
 This package is part of the Enlightenment DR17 desktop shell.
 
 %package -n %{develname}
-Summary: Exalt Library headers and development libraries
-Group: System/Libraries
-Requires: %{libname} = %{version}
-Provides: %{name}-devel = %{version}-%{release}
+Summary:	Exalt Library headers and development libraries
+Group:		System/Libraries
+Requires:	%{libname} = %{version}-%{release}
+Provides:	%{name}-devel = %{version}-%{release}
 
 %description -n %{develname}
 Exalt development headers and development libraries.
@@ -68,7 +69,6 @@ NOCONFIGURE=yes ./autogen.sh
 %make
 
 %install
-rm -fr %{buildroot}
 %makeinstall_std
 
 %files
@@ -83,4 +83,48 @@ rm -fr %{buildroot}
 %{_libdir}/*.so
 %{_includedir}/*
 %{_libdir}/pkgconfig/*
+
+
+%changelog
+* Thu Jan 12 2012 Matthew Dawkins <mattydaw@mandriva.org> 0.9-1.64527.1
++ Revision: 760474
+- new snapshot 0.9.64527
+- cleaned up spec
+- merged UnityLinux spec
+
+* Mon Jan 03 2011 Crispin Boylan <crisb@mandriva.org> 0.9-0.20101107.1mdv2011.0
++ Revision: 627852
+- Update source tarball from svn
+
+* Fri Jul 16 2010 Funda Wang <fwang@mandriva.org> 0.9-0.20100707.1mdv2011.0
++ Revision: 554385
+- New snapshot
+
+* Sat Aug 08 2009 Funda Wang <fwang@mandriva.org> 0.8-0.20080808.1mdv2010.0
++ Revision: 411613
+- adjust BR
+- New snapshot
+
+* Thu Jul 09 2009 Funda Wang <fwang@mandriva.org> 0.6-5mdv2010.0
++ Revision: 393744
+- rebuild
+
+* Wed Mar 04 2009 Antoine Ginies <aginies@mandriva.com> 0.6-4mdv2009.1
++ Revision: 348440
+- provide std C math function of GCC
+- try to fix 2009.0 build
+
+* Tue Mar 03 2009 Antoine Ginies <aginies@mandriva.com> 0.6-3mdv2009.1
++ Revision: 347884
+- add wpa_supplicant and dhcp support for exalt
+
+* Mon Mar 02 2009 Antoine Ginies <aginies@mandriva.com> 0.6-2mdv2009.1
++ Revision: 347519
+- fix bad conflits and obsolete and provides
+
+* Mon Mar 02 2009 Antoine Ginies <aginies@mandriva.com> 0.6-1mdv2009.1
++ Revision: 347451
+- fix %%files tag
+- import exalt
+
 
