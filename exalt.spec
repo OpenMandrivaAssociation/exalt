@@ -9,7 +9,7 @@
 #cd ..; \
 #tar -Jcf exalt-$PKG_VERSION.tar.xz exalt/ --exclude .svn --exclude .*ignore
 
-%define svnrev 76819
+%define svnrev 84424
 
 %define major 1
 %define libname %mklibname %{name} %{major}
@@ -18,7 +18,7 @@
 Summary: 	ELF based front end network manager
 Name:		exalt
 Version:	0.9
-Release:	1.%{svnrev}.2
+Release:	1.%{svnrev}.1
 License: 	BSD
 Group: 		Graphical desktop/Enlightenment
 URL: 		http://www.enlightenment.org/
